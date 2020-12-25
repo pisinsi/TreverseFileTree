@@ -9,6 +9,7 @@ export default class TreverseFileTree {
         if(Event instanceof FileList) this.#handlePathArrayOfFile(Event)
         else if(!this.#isEvent(Event)) throw this.#isNotDomEvent()
         else if(!this.#allowed_events.includes(Event.type)) throw this.#isNotAllowedEvent()
+        else if(Event.type === 'change') this.#handlePathArrayOfFile(Event.target.files)
         else  /* Valid html drop event */ this.#getFile(Event) 
     }
     /**
